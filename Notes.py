@@ -32,9 +32,9 @@ def read_note():
     for note in notes:
         if note["id"] == note_id:
             print(note["text"])
+        return
     else:
         print("Error. Note is not found")
-        return
 
 def edit_note():
     """Edit note function"""
@@ -49,8 +49,8 @@ def edit_note():
             note["text"] = text
             note["updated_at"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             break
-    else:
-        print("Error. Note is not found")
+        else:
+            print("Error. Note is not found")
         return
     with open("notes.json", "w") as f:
         for note in notes:
@@ -67,6 +67,7 @@ def delete_note():
         for note in notes:
             json.dump(note, f)
             f.write("\n")
+        
     print("Note deleted.")
 
 def show_menu() -> int:
